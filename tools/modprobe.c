@@ -582,7 +582,8 @@ static int insmod_insert(struct kmod_module *mod, int flags, const char *extra_o
 			    kmod_module_get_name(mod));
 			break;
 		default:
-			ERR("could not insert '%s': %s\n", kmod_module_get_name(mod),
+			ERR("could not insert '%s' or inserted with error %s, "
+			    "(see dmesg)\n", kmod_module_get_name(mod),
 			    strerror(-err));
 			break;
 		}

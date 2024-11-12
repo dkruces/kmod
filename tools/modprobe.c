@@ -572,6 +572,11 @@ static int insmod_insert(struct kmod_module *mod, int flags, const char *extra_o
 		err = 0;
 	else {
 		switch (err) {
+		case -EINVAL:
+			ERR("module '%s'inserted: ro_after_init data might"
+			    "still be writable (see dmesg)\n",
+			    kmod_module_get_name(mod));
+			break;
 		case -EEXIST:
 			ERR("could not insert '%s': Module already in kernel\n",
 			    kmod_module_get_name(mod));
